@@ -1,10 +1,8 @@
 #!/usr/bin/env node
-import * as meow from "meow";
-import { timer } from "./timer";
+import * as meow from 'meow';
+import { timer } from './timer';
 
 const usageText = `
-Start a pomodoro timer.
-
 Usage
   $ kama
 
@@ -23,23 +21,28 @@ const cliOptions: meow.Options<meow.AnyFlags> = {
   inferType: true,
   flags: {
     length: {
-      type: "number",
-      alias: "l",
+      type: 'number',
+      alias: 'l',
       default: 25,
     },
     silent: {
-      type: "boolean",
-      alias: "s",
+      type: 'boolean',
+      alias: 's',
       default: false,
     },
     message: {
-      type: "string",
-      alias: "m",
-      default: "timer finished",
+      type: 'string',
+      alias: 'm',
+      default: 'Timer finished!',
+    },
+    barWidth: {
+      type: 'number',
+      alias: 'w',
+      default: 15,
     },
   },
 };
 
-const { length, silent, message } = meow(usageText, cliOptions).flags;
+const { length, silent, message, barWidth } = meow(usageText, cliOptions).flags;
 
-timer(<number>length, <boolean>silent, <string>message);
+timer(<number>length, <boolean>silent, <string>message, <number>barWidth);
